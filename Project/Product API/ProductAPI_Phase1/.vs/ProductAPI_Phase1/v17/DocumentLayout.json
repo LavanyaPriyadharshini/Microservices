@@ -1,0 +1,87 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Product API\\ProductAPI_Phase1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{00B4B6A5-986F-4D8E-8734-611B3B01D5E0}|ProductAPI_Phase1.csproj|d:\\microservices\\microservices\\project\\product api\\productapi_phase1\\services\\serviceimplementation\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00B4B6A5-986F-4D8E-8734-611B3B01D5E0}|ProductAPI_Phase1.csproj|solutionrelative:services\\serviceimplementation\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00B4B6A5-986F-4D8E-8734-611B3B01D5E0}|ProductAPI_Phase1.csproj|d:\\microservices\\microservices\\project\\product api\\productapi_phase1\\repositories\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00B4B6A5-986F-4D8E-8734-611B3B01D5E0}|ProductAPI_Phase1.csproj|solutionrelative:repositories\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00B4B6A5-986F-4D8E-8734-611B3B01D5E0}|ProductAPI_Phase1.csproj|d:\\microservices\\microservices\\project\\product api\\productapi_phase1\\repositories_implementation\\inmemoryproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00B4B6A5-986F-4D8E-8734-611B3B01D5E0}|ProductAPI_Phase1.csproj|solutionrelative:repositories_implementation\\inmemoryproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:254354193:0:{71f361cc-493f-47c0-923f-f2570b6f8618}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProductService.cs",
+              "DocumentMoniker": "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Product API\\ProductAPI_Phase1\\Services\\ServiceImplementation\\ProductService.cs",
+              "RelativeDocumentMoniker": "Services\\ServiceImplementation\\ProductService.cs",
+              "ToolTip": "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Product API\\ProductAPI_Phase1\\Services\\ServiceImplementation\\ProductService.cs",
+              "RelativeToolTip": "Services\\ServiceImplementation\\ProductService.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwBcAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-10T13:45:26.262Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "InMemoryProductRepository.cs",
+              "DocumentMoniker": "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Product API\\ProductAPI_Phase1\\Repositories_Implementation\\InMemoryProductRepository.cs",
+              "RelativeDocumentMoniker": "Repositories_Implementation\\InMemoryProductRepository.cs",
+              "ToolTip": "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Product API\\ProductAPI_Phase1\\Repositories_Implementation\\InMemoryProductRepository.cs",
+              "RelativeToolTip": "Repositories_Implementation\\InMemoryProductRepository.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAJYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-10T13:03:20.944Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IProductRepository.cs",
+              "DocumentMoniker": "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Product API\\ProductAPI_Phase1\\Repositories\\IProductRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\IProductRepository.cs",
+              "ToolTip": "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Product API\\ProductAPI_Phase1\\Repositories\\IProductRepository.cs",
+              "RelativeToolTip": "Repositories\\IProductRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-10T13:02:49.089Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
