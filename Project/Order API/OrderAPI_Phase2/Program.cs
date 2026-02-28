@@ -6,6 +6,8 @@ using OrderAPI_Phase2.Services.Interfaces;
 using OrderAPI_Phase2.Services.ServiceImplementation;
 using Polly.Extensions.Http;
 using Polly;
+using Microsoft.Win32;
+using OrderAPI_Phase2.MessageBus;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +32,14 @@ builder.Services.AddHttpClient<IProductHttpClient, ProductHttpClient>(client =>
 })
 .AddPolicyHandler(GetRetryPolicy())      // Retry on transient failures
 .AddPolicyHandler(GetCircuitBreakerPolicy()); // Circuit breaker
+
+
+//── NEW: Register RabbitMQ Message Bus ────────────────────────
+//registering the interface for the rabbit mq bus
+// Singleton because RabbitMQ connection is expensive to create.
+// One shared connection for entire app lifetime.
+builder.Services.AddSingleton<IMessageBus, RabbitMQMessageBus>();  // ← NEW
+
 
 
 // Configure Swagger/OpenAPI
@@ -61,8 +71,15 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddOpenApi();
 
-
 var app = builder.Build();
+
+
+// Force RabbitMQMessageBus to initialize on startup
+// Without this, Singleton is lazy — only created on first use
+// We want RabbitMQ connection established immediately when app starts
+app.Services.GetRequiredService<IMessageBus>();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

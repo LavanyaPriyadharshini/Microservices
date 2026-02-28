@@ -1,0 +1,154 @@
+{
+    "Routes": [
+
+        // ─── Product.API Routes ────────────────────────────────────────
+
+        // GET all products
+        // Client calls:  GET http://localhost:5000/api/products
+        // Gateway sends: GET http://localhost:5001/api/product/getallproducts
+        {
+            "UpstreamPathTemplate": "/api/products",
+            "UpstreamHttpMethod": [ "GET" ],
+            "DownstreamPathTemplate": "/api/product/getallproducts",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5001
+                }
+            ]
+        },
+
+        // GET product by ID
+        // Client calls:  GET http://localhost:5000/api/products/{id}
+        // Gateway sends: GET http://localhost:5001/api/product/GetproductbyID?id={id}
+        {
+            "UpstreamPathTemplate": "/api/products/{id}",
+            "UpstreamHttpMethod": [ "GET" ],
+            "DownstreamPathTemplate": "/api/product/GetproductbyID?id={id}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5001
+                }
+            ]
+        },
+
+
+
+        // GET products by category
+        // Client calls:  GET http://localhost:5000/api/products/category/{category}
+        // Gateway sends: GET http://localhost:5001/api/product/category/{category}
+        {
+            "UpstreamPathTemplate": "/api/products/category/{category}",
+            "UpstreamHttpMethod": [ "GET" ],
+            "DownstreamPathTemplate": "/api/product/category/{category}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5001
+                }
+            ]
+        },
+
+
+        // POST create product
+        // Client calls:  POST http://localhost:5000/api/products
+        // Gateway sends: POST http://localhost:5001/api/product
+        {
+            "UpstreamPathTemplate": "/api/products",
+            "UpstreamHttpMethod": [ "POST" ],
+            "DownstreamPathTemplate": "/api/product",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5001
+                }
+            ]
+        },
+
+
+        // PUT update product
+        // Client calls:  PUT http://localhost:5000/api/products/{id}
+        // Gateway sends: PUT http://localhost:5001/api/product/{id}
+        {
+            "UpstreamPathTemplate": "/api/products/{id}",
+            "UpstreamHttpMethod": [ "PUT" ],
+            "DownstreamPathTemplate": "/api/product/{id}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5001
+                }
+            ]
+        },
+
+
+        // ─── Order.API Routes ──────────────────────────────────────────
+
+        // GET all orders
+        // Client calls:  GET http://localhost:5000/api/orders
+        // Gateway sends: GET http://localhost:5002/api/order
+        {
+            "UpstreamPathTemplate": "/api/orders",
+            "UpstreamHttpMethod": [ "GET" ],
+            "DownstreamPathTemplate": "/api/order",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5002
+                }
+            ]
+        },
+
+
+
+        // GET order by ID
+        // Client calls:  GET http://localhost:5000/api/orders/{id}
+        // Gateway sends: GET http://localhost:5002/api/order/{id}
+        {
+            "UpstreamPathTemplate": "/api/orders/{id}",
+            "UpstreamHttpMethod": [ "GET" ],
+            "DownstreamPathTemplate": "/api/order/{id}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5002
+                }
+            ]
+        },
+
+
+
+        // POST create order
+        // Client calls:  POST http://localhost:5000/api/orders
+        // Gateway sends: POST http://localhost:5002/api/order
+        {
+            "UpstreamPathTemplate": "/api/orders",
+            "UpstreamHttpMethod": [ "POST" ],
+            "DownstreamPathTemplate": "/api/order",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5002
+                }
+            ]
+        }
+
+    ],
+
+    // GlobalConfiguration applies to ALL routes, this is the url which will be given to the client for accessing ,through this url only all other services can be accessed
+    "GlobalConfiguration": {
+        "BaseUrl": "http://localhost:5000"
+    }
+
+
+
+}

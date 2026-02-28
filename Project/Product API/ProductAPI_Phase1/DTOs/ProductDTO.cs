@@ -3,7 +3,7 @@
     public record ProductDto(
        int Id,
        int ProductId,
-       string Name,
+       string Prod_Name,
        string Description,
        decimal Price,
        int Stock,

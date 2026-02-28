@@ -65,10 +65,10 @@ D:\MICROSERVICES\MICROSERVICES\Project\Product API\ProductAPI_Phase1\obj\Debug\n
 D:\MICROSERVICES\MICROSERVICES\Project\Product API\ProductAPI_Phase1\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.ProductAPI_Phase1.props
 D:\MICROSERVICES\MICROSERVICES\Project\Product API\ProductAPI_Phase1\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.ProductAPI_Phase1.props
 D:\MICROSERVICES\MICROSERVICES\Project\Product API\ProductAPI_Phase1\obj\Debug\net9.0\staticwebassets.pack.json
-D:\MICROSERVICES\MICROSERVICES\Project\Product API\ProductAPI_Phase1\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 D:\MICROSERVICES\MICROSERVICES\Project\Product API\ProductAPI_Phase1\obj\Debug\net9.0\ProductA.7EE8BF08.Up2Date
 D:\MICROSERVICES\MICROSERVICES\Project\Product API\ProductAPI_Phase1\obj\Debug\net9.0\ProductAPI_Phase1.dll
 D:\MICROSERVICES\MICROSERVICES\Project\Product API\ProductAPI_Phase1\obj\Debug\net9.0\refint\ProductAPI_Phase1.dll
 D:\MICROSERVICES\MICROSERVICES\Project\Product API\ProductAPI_Phase1\obj\Debug\net9.0\ProductAPI_Phase1.pdb
 D:\MICROSERVICES\MICROSERVICES\Project\Product API\ProductAPI_Phase1\obj\Debug\net9.0\ProductAPI_Phase1.genruntimeconfig.cache
 D:\MICROSERVICES\MICROSERVICES\Project\Product API\ProductAPI_Phase1\obj\Debug\net9.0\ref\ProductAPI_Phase1.dll
+D:\MICROSERVICES\MICROSERVICES\Project\Product API\ProductAPI_Phase1\obj\Debug\net9.0\ProductAPI_Phase1.sourcelink.json

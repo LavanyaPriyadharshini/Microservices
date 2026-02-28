@@ -1,5 +1,7 @@
 ﻿using OrderAPI_Phase2.DTOs;
+using OrderAPI_Phase2.Events;
 using OrderAPI_Phase2.HttpClients;
+using OrderAPI_Phase2.MessageBus;
 using OrderAPI_Phase2.Models;
 using OrderAPI_Phase2.Repositories.InterfaceRepo;
 using OrderAPI_Phase2.Services.Interfaces;
@@ -9,7 +11,11 @@ namespace OrderAPI_Phase2.Services.ServiceImplementation
     public class OrderService(
      IOrderRepository repository,
      IProductHttpClient productHttpClient,
+
+      IMessageBus messageBus,// ← NEW: injected via DI
+
      ILogger<OrderService> logger) : IOrderService
+
     {
 
 
@@ -37,6 +43,9 @@ namespace OrderAPI_Phase2.Services.ServiceImplementation
 
             return MapToDto(order);
         }
+
+
+        //while the order is created the message will be sent to the notification api via rabbit mq
 
         public async Task<OrderDto> CreateOrderAsync(CreateOrderDTO createOrderDto)
         {
@@ -89,13 +98,58 @@ namespace OrderAPI_Phase2.Services.ServiceImplementation
             var createdOrder = await repository.CreateOrderAsync(order);
 
             logger.LogInformation(
-                "Order {OrderId} created successfully. Total: {TotalAmount:C}",
+                "Order {OrderId} created successfully. Total: {TotalAmount:C}", 
                 createdOrder.Id,
                 createdOrder.TotalAmount
             );
 
+
+            // ── Step 5: NEW — Publish event to RabbitMQ ────────────────
+            // Order is already saved to DB before we publish.
+            // Why? If publish fails, order is still safe in DB.
+            // We NEVER publish before saving — that would risk
+            // sending a notification for an order that failed to save.
+
+
+            try
+            {
+                var orderCreatedEvent = new OrderCreatedEvent
+                {
+                    OrderId = createdOrder.Id,
+                    CustomerName = createdOrder.CustomerName,
+                    CustomerEmail = createdOrder.CustomerEmail,
+    ProductName = order.Prod_Name ?? product.Prod_Name ?? "Unknown Product", // ← use order or product directly
+                    Quantity = createdOrder.Quantity,
+                    TotalAmount = createdOrder.TotalAmount,
+                    OrderDate = createdOrder.OrderDate,
+                      PublishedAt = DateTime.UtcNow    
+                };
+
+                await messageBus.PublishOrderCreatedAsync(orderCreatedEvent); //calls the interface and implements the code in the Rabbitmqmessage bus
+
+                logger.LogInformation(
+                    "📤 OrderCreatedEvent published for Order {OrderId}",
+                    createdOrder.Id);
+            }
+
+            catch (Exception ex)
+            {
+                // We catch but DO NOT rethrow.
+                // Why? Order is already saved successfully in DB.
+                // A RabbitMQ failure should NOT fail the entire order.
+                // Customer should still get their order confirmed.
+                // In production → use Outbox Pattern for guaranteed delivery.
+                logger.LogError(ex,
+                    "⚠️ Failed to publish event for Order {OrderId}. Order was saved successfully.",
+                    createdOrder.Id);
+            }
+
             return MapToDto(createdOrder);
         }
+
+
+
+
 
 
         private static OrderDto MapToDto(OrderDetails order) => new(

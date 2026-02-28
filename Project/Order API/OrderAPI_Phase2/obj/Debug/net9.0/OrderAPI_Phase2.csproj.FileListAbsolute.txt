@@ -31,10 +31,11 @@ D:\MICROSERVICES\MICROSERVICES\Project\Order API\OrderAPI_Phase2\obj\Debug\net9.
 D:\MICROSERVICES\MICROSERVICES\Project\Order API\OrderAPI_Phase2\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.OrderAPI_Phase2.props
 D:\MICROSERVICES\MICROSERVICES\Project\Order API\OrderAPI_Phase2\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.OrderAPI_Phase2.props
 D:\MICROSERVICES\MICROSERVICES\Project\Order API\OrderAPI_Phase2\obj\Debug\net9.0\staticwebassets.pack.json
-D:\MICROSERVICES\MICROSERVICES\Project\Order API\OrderAPI_Phase2\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 D:\MICROSERVICES\MICROSERVICES\Project\Order API\OrderAPI_Phase2\obj\Debug\net9.0\OrderAPI.3320F525.Up2Date
 D:\MICROSERVICES\MICROSERVICES\Project\Order API\OrderAPI_Phase2\obj\Debug\net9.0\OrderAPI_Phase2.dll
 D:\MICROSERVICES\MICROSERVICES\Project\Order API\OrderAPI_Phase2\obj\Debug\net9.0\refint\OrderAPI_Phase2.dll
 D:\MICROSERVICES\MICROSERVICES\Project\Order API\OrderAPI_Phase2\obj\Debug\net9.0\OrderAPI_Phase2.pdb
 D:\MICROSERVICES\MICROSERVICES\Project\Order API\OrderAPI_Phase2\obj\Debug\net9.0\OrderAPI_Phase2.genruntimeconfig.cache
 D:\MICROSERVICES\MICROSERVICES\Project\Order API\OrderAPI_Phase2\obj\Debug\net9.0\ref\OrderAPI_Phase2.dll
+D:\MICROSERVICES\MICROSERVICES\Project\Order API\OrderAPI_Phase2\bin\Debug\net9.0\RabbitMQ.Client.dll
+D:\MICROSERVICES\MICROSERVICES\Project\Order API\OrderAPI_Phase2\obj\Debug\net9.0\OrderAPI_Phase2.sourcelink.json
