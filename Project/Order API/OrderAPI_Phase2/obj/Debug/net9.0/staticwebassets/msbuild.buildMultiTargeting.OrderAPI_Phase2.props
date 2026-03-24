@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\OrderAPI_Phase2.props" />
-</Project>

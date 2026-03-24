@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\GatewayAPI_Phase4.props" />
-</Project>

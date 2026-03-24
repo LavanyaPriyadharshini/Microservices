@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\NotificationAPI_Phase3.props" />
-</Project>

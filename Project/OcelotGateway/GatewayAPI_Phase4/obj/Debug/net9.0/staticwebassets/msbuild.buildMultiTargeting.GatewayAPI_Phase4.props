@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\GatewayAPI_Phase4.props" />
-</Project>

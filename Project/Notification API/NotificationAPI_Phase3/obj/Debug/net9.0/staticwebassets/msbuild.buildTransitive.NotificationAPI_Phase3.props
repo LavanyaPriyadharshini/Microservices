@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\NotificationAPI_Phase3.props" />
-</Project>
