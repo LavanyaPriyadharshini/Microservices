@@ -1,0 +1,23 @@
+﻿# Build output folders
+bin/
+obj/
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+
+# Development settings only
+appsettings.Development.json
+
+# Docker files
+Dockerfile
+.dockerignore
+
+# Git files
+.git/
+.gitignore
+
+# Logs
+*.log
+logs/

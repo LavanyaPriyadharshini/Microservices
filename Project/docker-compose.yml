@@ -1,0 +1,173 @@
+
+# ── Networks ─────────────────────────────────────────────────────
+# All services on same network so they can talk to each other
+# Inside this network containers use SERVICE NAME not localhost
+volumes:
+  sqlserver-data:   # ← SQL Server data persists here , if not given ,the datas will not get saved or not persisits
+
+
+networks:
+  ecommerce-network:
+    driver: bridge
+
+# ── Services ─────────────────────────────────────────────────────
+services:
+
+
+# when you are direclty running the sql server like giving the server ip in the appsetting.json, then you can remove the sql server 
+# from running as a container in the Docker desktop , if you want to use the sql server in the docker, then you can uncomment the below
+
+
+  # ── SQL Server ────────────────────────────────────────────────
+  # sqlserver:
+  #   image: mcr.microsoft.com/mssql/server:2022-latest
+  #   container_name: sqlserver
+  #   ports:
+  #     - "1433:1433"
+  #   environment:
+  #     SA_PASSWORD: "Admin@1234567"
+  #     ACCEPT_EULA: "Y"
+  #     MSSQL_PID: "Express"
+  #   volumes:
+  #     - sqlserver-data:/var/opt/mssql   # ← data persists here
+  #   networks:
+  #     - ecommerce-network
+  #   healthcheck:
+  #     test: ["CMD", "/opt/mssql-tools18/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "Admin@1234567", "-Q", "SELECT 1", "-No"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 10
+
+
+  # ── RabbitMQ ───────────────────────────────────────────────────
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"       # AMQP port — apps connect here
+      - "15672:15672"     # Management UI — browser dashboard
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    networks:
+      - ecommerce-network
+    healthcheck:
+      # Check if RabbitMQ is truly ready before starting dependent services
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s       # check every 10 seconds
+      timeout: 5s         # wait max 5 seconds for response
+      retries: 5          # retry 5 times before marking unhealthy
+
+  # ── Kafka ──────────────────────────────────────────────────────
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: kafka
+    ports:
+      - "9092:9092"       # External port — .NET apps on host connect here
+      - "29092:29092"     # Internal port — other containers connect here
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,PLAINTEXT_INTERNAL://0.0.0.0:29092,CONTROLLER://0.0.0.0:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://kafka:29092
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@localhost:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
+    networks:
+      - ecommerce-network
+    healthcheck:
+      test: ["CMD", "kafka-broker-api-versions", "--bootstrap-server", "localhost:9092"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  # ── Product.API ────────────────────────────────────────────────
+  product-api:
+    build:
+      context: "./Product API/ProductAPI_Phase1"   # path to Dockerfile
+    container_name: product-api
+    ports:
+      - "5001:8080"       # host:container
+    networks:
+      - ecommerce-network
+
+  # ── Order.API ──────────────────────────────────────────────────
+  order-api:
+    build:
+      context: "./Order API/OrderAPI_Phase2"
+    container_name: order-api
+    ports:
+      - "5002:8080"
+    restart: on-failure        # ← auto restart if crashes
+    environment:
+      # Override appsettings.json values for Docker environment
+      # Inside Docker network use SERVICE NAME not localhost
+      - ProductAPI__BaseUrl=http://product-api:8080
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Port=5672
+      - RabbitMQ__Username=guest
+      - RabbitMQ__Password=guest
+      - Kafka__BootstrapServers=kafka:29092
+    depends_on:
+      rabbitmq:
+        condition: service_healthy    # wait until RabbitMQ is ready
+      kafka:
+        condition: service_healthy    # wait until Kafka is ready
+      product-api:
+        condition: service_started    # wait until Product.API starts
+    networks:
+      - ecommerce-network
+
+  # ── Notification.API ───────────────────────────────────────────
+  notification-api:
+    build:
+      context: "./Notification API/NotificationAPI_Phase3"
+    container_name: notification-api
+    restart: on-failure        # ← auto restart if crashes
+    environment:
+      # Inside Docker network use SERVICE NAME not localhost
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Port=5672
+      - RabbitMQ__Username=guest
+      - RabbitMQ__Password=guest
+      - Kafka__BootstrapServers=kafka:29092
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    networks:
+      - ecommerce-network
+
+  # ── Kafka UI ───────────────────────────────────────────────────
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui
+    ports:
+      - "8080:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local-kafka
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
+    depends_on:
+      kafka:
+        condition: service_healthy
+    networks:
+      - ecommerce-network
+
+  # ── Gateway ────────────────────────────────────────────────────
+  gateway:
+    build:
+      context: "./OcelotGateway/GatewayAPI_Phase4"
+    container_name: gateway
+    ports:
+      - "5000:8080"       # Single entry point for all clients
+    depends_on:
+      - product-api
+      - order-api
+      - notification-api
+    networks:
+      - ecommerce-network

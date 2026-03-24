@@ -1,0 +1,125 @@
+﻿
+# ── STAGE 1: BUILD ──────────────────────────────────────────────
+# Use full .NET SDK image to BUILD the application
+# SDK = Software Development Kit
+# Contains: compiler, build tools, dotnet CLI
+# Think of this as your DEVELOPMENT ROOM (temporary)
+
+# FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+
+
+# Set working directory INSIDE the container
+# All following commands run from this folder
+# Like doing: cd /src inside the container
+# WORKDIR /src
+
+
+
+# Copy ONLY the project file first
+# Why? Docker caches layers
+# If .csproj hasn't changed → restore is CACHED → faster builds
+# ProjectFile:  ProductAPI_Phase1.csproj
+# Destination:  . (current folder = /src)
+# copy the project file from the local machine to the container
+# copy the project file first so docker can cache the restore step, if the .csproj not changes -> docker skips restore next time -> faster build
+# COPY OrderAPI_Phase2.csproj .
+
+
+
+# Restore NuGet packages
+# Downloads all packages listed in .csproj
+# Like: dotnet restore on your machine
+# RUN dotnet restore
+
+
+# Now copy ALL remaining source code
+# Source:      . (everything in your project folder like controllers , services , etc)
+# Destination: . (current folder = /src)
+# Why after restore? If only code changes (not packages)
+# Docker uses cached restore layer → faster builds ✅
+# COPY . .
+
+
+# Build and publish the application
+# -c Release = Release mode (optimized, no debug symbols)
+# -o /app/publish = output folder inside container
+# Like: dotnet publish on your machine
+# RUN dotnet publish -c Release -o /app/publish
+
+
+
+
+# ── STAGE 2: RUNTIME ────────────────────────────────────────────
+
+# Use SMALLER runtime-only image to RUN the application
+# aspnet = ASP.NET Core runtime only
+# NO compiler, NO build tools, NO SDK
+# Think of this as your PRODUCTION ROOM (final)
+# FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
+
+
+# Set working directory in runtime container
+#this is where yur published files will live
+# WORKDIR /app
+
+
+# Copy ONLY the published output from Stage 1
+# --from=build = take files from Stage 1 (named "build")
+# /app/publish = where Stage 1 put the published files
+# .            = current folder in Stage 2 (/app)
+# Stage 1 (750MB SDK) is THROWN AWAY after this ✅
+# Final image only contains runtime + your published app ✅
+# COPY --from=build /app/publish .
+
+
+# Tell Docker which port your app listens on
+# This is DOCUMENTATION only — doesn't actually open the port
+# Port mapping happens in docker-compose.yml
+#here it dosen't actually open the port - it happens in docer-compose.yml
+# EXPOSE 8080
+
+
+
+# Set environment variable
+# Tells ASP.NET Core to listen on port 8080 inside container
+# ENV ASPNETCORE_URLS=http://+:8080
+
+
+#Starts your application
+# Command that runs when container STARTS
+# Like typing: dotnet ProductAPI_Phase1.dll in terminal
+# the projects .cs files gets compiled as a dll file(entire app in one file) called a compiled file, when we give dotnet publish ,the dotnet runtime 
+# .net run time reads .dll file and runs your app, just like an oven baked cake
+#in docker - the .dll file which has the entire compiled project files, it will be taken for consideration
+#the .dll contains the Intermediate language code
+# ENTRYPOINT ["dotnet", "OrderAPI_Phase2.dll"]
+
+
+
+
+
+
+
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+
+WORKDIR /src
+
+COPY OrderAPI_Phase2.csproj .
+
+RUN dotnet restore OrderAPI_Phase2.csproj
+
+COPY . .
+
+RUN dotnet publish OrderAPI_Phase2.csproj -c Release -o /app/publish
+
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
+
+WORKDIR /app
+
+COPY --from=build /app/publish .
+
+EXPOSE 8080
+
+ENV ASPNETCORE_URLS=http://+:8080
+
+ENTRYPOINT ["dotnet", "OrderAPI_Phase2.dll"]
