@@ -1,0 +1,142 @@
+{
+    "Routes": [
+
+        // ─── Product.API Routes ────────────────────────────────────────
+
+        // GET all products
+        // Client calls:  GET http://localhost:5000/api/products
+        // Gateway sends: GET http://product-api:8080/api/product/getallproducts
+        //                         ↑ service name, not localhost
+        {
+            "UpstreamPathTemplate": "/api/products",
+            "UpstreamHttpMethod": [ "GET" ],
+            "DownstreamPathTemplate": "/api/product/getallproducts",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                    {
+                    "Host": "product-api",
+                    "Port": 8080
+                }
+            ]
+        },
+
+        // GET product by ID
+        {
+            "UpstreamPathTemplate": "/api/products/{id}",
+            "UpstreamHttpMethod": [ "GET" ],
+            "DownstreamPathTemplate": "/api/product/GetproductbyID?id={id}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "product-api",
+                    "Port": 8080
+                }
+            ]
+        },
+
+        // GET products by category
+        {
+            "UpstreamPathTemplate": "/api/products/category/{category}",
+            "UpstreamHttpMethod": [ "GET" ],
+            "DownstreamPathTemplate": "/api/product/category/{category}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "product-api",
+                    "Port": 8080
+                }
+            ]
+        },
+
+        // POST create product
+        {
+            "UpstreamPathTemplate": "/api/products",
+            "UpstreamHttpMethod": [ "POST" ],
+            "DownstreamPathTemplate": "/api/product",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "product-api",
+                    "Port": 8080
+                }
+            ]
+        },
+
+        // PUT update product
+        {
+            "UpstreamPathTemplate": "/api/products/{id}",
+            "UpstreamHttpMethod": [ "PUT" ],
+            "DownstreamPathTemplate": "/api/product/{id}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "product-api",
+                    "Port": 8080
+                }
+            ]
+        },
+
+        // DELETE product
+        {
+            "UpstreamPathTemplate": "/api/products/{id}",
+            "UpstreamHttpMethod": [ "DELETE" ],
+            "DownstreamPathTemplate": "/api/product/{id}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "product-api",
+                    "Port": 8080
+                }
+            ]
+        },
+
+        // ─── Order.API Routes ──────────────────────────────────────────
+
+        // GET all orders
+        {
+            "UpstreamPathTemplate": "/api/orders",
+            "UpstreamHttpMethod": [ "GET" ],
+            "DownstreamPathTemplate": "/api/order",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "order-api",
+                    "Port": 8080
+                }
+            ]
+        },
+
+        // GET order by ID
+        {
+            "UpstreamPathTemplate": "/api/orders/{id}",
+            "UpstreamHttpMethod": [ "GET" ],
+            "DownstreamPathTemplate": "/api/order/{id}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "order-api",
+                    "Port": 8080
+                }
+            ]
+        },
+
+        // POST create order
+        {
+            "UpstreamPathTemplate": "/api/orders",
+            "UpstreamHttpMethod": [ "POST" ],
+            "DownstreamPathTemplate": "/api/order",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "order-api",
+                    "Port": 8080
+                }
+            ]
+        }
+    ],
+
+    // BaseUrl = Gateway's address inside Docker network
+    "GlobalConfiguration": {
+        "BaseUrl": "http://gateway:8080"
+    }
+}

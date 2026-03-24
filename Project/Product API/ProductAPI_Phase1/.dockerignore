@@ -1,0 +1,30 @@
+﻿
+# ── Build output folders ────────────────────────────────────────
+# These are generated automatically by dotnet build/publish
+# Docker will build fresh inside container — don't copy these
+bin/
+obj/
+
+# ── Visual Studio files ──────────────────────────────────────────
+# IDE-specific files — not needed inside container
+.vs/
+*.user
+*.suo
+
+# ── Environment specific settings ───────────────────────────────
+# Development settings should NOT go into production container
+# Production settings come from environment variables
+appsettings.Development.json
+
+# ── Docker files themselves ──────────────────────────────────────
+# No need to copy Dockerfile into the container
+Dockerfile
+.dockerignore
+
+# ── Git files ────────────────────────────────────────────────────
+.git/
+.gitignore
+
+# ── Logs ─────────────────────────────────────────────────────────
+*.log
+logs/
