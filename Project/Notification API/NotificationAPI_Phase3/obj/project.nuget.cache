@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "E0DvGBjG40M=",
+  "success": true,
+  "projectFilePath": "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Notification API\\NotificationAPI_Phase3\\NotificationAPI_Phase3.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lavanyap\\.nuget\\packages\\confluent.kafka\\2.13.2\\confluent.kafka.2.13.2.nupkg.sha512",
+    "C:\\Users\\lavanyap\\.nuget\\packages\\librdkafka.redist\\2.13.2\\librdkafka.redist.2.13.2.nupkg.sha512",
+    "C:\\Users\\lavanyap\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.3\\microsoft.aspnetcore.openapi.9.0.3.nupkg.sha512",
+    "C:\\Users\\lavanyap\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512",
+    "C:\\Users\\lavanyap\\.nuget\\packages\\rabbitmq.client\\7.2.1\\rabbitmq.client.7.2.1.nupkg.sha512",
+    "C:\\Users\\lavanyap\\.nuget\\packages\\system.io.pipelines\\8.0.0\\system.io.pipelines.8.0.0.nupkg.sha512",
+    "C:\\Users\\lavanyap\\.nuget\\packages\\system.threading.ratelimiting\\8.0.0\\system.threading.ratelimiting.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

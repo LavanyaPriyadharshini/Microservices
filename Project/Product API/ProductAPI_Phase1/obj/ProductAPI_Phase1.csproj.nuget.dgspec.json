@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Product API\\ProductAPI_Phase1\\ProductAPI_Phase1.csproj": {}
+    "D:\\MICROSERVICES\\Microservices New Clone\\New folder\\Microservices\\Project\\Product API\\ProductAPI_Phase1\\ProductAPI_Phase1.csproj": {}
   },
   "projects": {
-    "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Product API\\ProductAPI_Phase1\\ProductAPI_Phase1.csproj": {
+    "D:\\MICROSERVICES\\Microservices New Clone\\New folder\\Microservices\\Project\\Product API\\ProductAPI_Phase1\\ProductAPI_Phase1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Product API\\ProductAPI_Phase1\\ProductAPI_Phase1.csproj",
+        "projectUniqueName": "D:\\MICROSERVICES\\Microservices New Clone\\New folder\\Microservices\\Project\\Product API\\ProductAPI_Phase1\\ProductAPI_Phase1.csproj",
         "projectName": "ProductAPI_Phase1",
-        "projectPath": "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Product API\\ProductAPI_Phase1\\ProductAPI_Phase1.csproj",
+        "projectPath": "D:\\MICROSERVICES\\Microservices New Clone\\New folder\\Microservices\\Project\\Product API\\ProductAPI_Phase1\\ProductAPI_Phase1.csproj",
         "packagesPath": "C:\\Users\\lavanyap\\.nuget\\packages\\",
-        "outputPath": "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Product API\\ProductAPI_Phase1\\obj\\",
+        "outputPath": "D:\\MICROSERVICES\\Microservices New Clone\\New folder\\Microservices\\Project\\Product API\\ProductAPI_Phase1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -51,13 +51,29 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
-            "Microsoft.AspNetCore.OpenApi": {
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[9.0.3, )"
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[7.2.0, )"
+              "version": "[10.1.7, )"
             }
           },
           "imports": [

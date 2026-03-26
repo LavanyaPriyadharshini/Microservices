@@ -1,23 +1,54 @@
-﻿using ProductAPI_Phase1.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using ProductAPI_Phase1.Data;
+using ProductAPI_Phase1.Repositories;
 using ProductAPI_Phase1.Repositories_Implementation;
 using ProductAPI_Phase1.Services.Interfaces;
 using ProductAPI_Phase1.Services.ServiceImplementation;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Load config
+builder.Configuration
+    .AddJsonFile("appsettings.json", optional: false)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
+    .AddEnvironmentVariables();
 
+// ── Controllers + Swagger ─────────────────────────────────────
 builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();  // ✅ Must have this
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new()
+    {
+        Title = "Product API",
+        Version = "v1",
+        Description = "Product microservice for E-Commerce application"
+    });
+});
 
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+// ── EF Core DbContext ─────────────────────────────────────────
+builder.Services.AddDbContext<ProductDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("ProductDB"),
+        sqlOptions => sqlOptions.EnableRetryOnFailure(
+            maxRetryCount: 5,
+            maxRetryDelay: TimeSpan.FromSeconds(10),
+            errorNumbersToAdd: null)
+    )
+);
 
-// ✅ ADD THESE LINES - Register your services for Dependency Injection
-builder.Services.AddSingleton<IProductRepository, InMemoryProductRepository>();
+
+//this inmemory repo is used for the 
+////builder.Services.AddSingleton<IProductRepository, InMemoryProductRepository>();
+
+
+// ── Repository ────────────────────────────────────────────────
+builder.Services.AddScoped<IProductRepository, EFProductRepository>();
+
+// ── Service ───────────────────────────────────────────────────
 builder.Services.AddScoped<IProductService, ProductService>();
 
-// Add CORS
+// ── CORS ──────────────────────────────────────────────────────
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -28,25 +59,26 @@ builder.Services.AddCors(options =>
     });
 });
 
-
-
-
 var app = builder.Build();
 
-// Configure the HTTP request pipeline
+// ── Auto migrate on startup ───────────────────────────────────
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ProductDbContext>();
+    db.Database.Migrate();
+}
+
+// ── Swagger only in Development ───────────────────────────────
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();           // Maps the OpenAPI endpoint
+    app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
-        options.SwaggerEndpoint("/openapi/v1.json", "Product API V1");
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Product API V1");
     });
 }
 
-//app.UseHttpsRedirection();
-
+app.UseCors("AllowAll");
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

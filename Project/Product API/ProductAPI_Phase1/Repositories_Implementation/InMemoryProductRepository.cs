@@ -9,7 +9,11 @@ namespace ProductAPI_Phase1.Repositories_Implementation
     /// In-memory implementation using ConcurrentDictionary for thread safety
     /// see the explanation in Microservises intro folder word file - page 3
     /// </summary>
-    public class InMemoryProductRepository : IProductRepository
+    /// 
+    // when the data is static we can use this , otherwise comment the iproduct repositoruy , because it now has the methods which are connected to the database
+    //public class InMemoryProductRepository : IProductRepository
+
+         public class InMemoryProductRepository 
     {
         private readonly ConcurrentDictionary<int, Product> _products;
         private int _nextId = 4; //represents the next available ID for new products

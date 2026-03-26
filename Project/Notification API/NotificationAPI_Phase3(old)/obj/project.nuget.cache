@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "lG9YdGI1PAI=",
+  "success": true,
+  "projectFilePath": "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Notification API\\NotificationAPI_Phase3\\NotificationAPI_Phase3.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lavanyap\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.3\\microsoft.aspnetcore.openapi.9.0.3.nupkg.sha512",
+    "C:\\Users\\lavanyap\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}

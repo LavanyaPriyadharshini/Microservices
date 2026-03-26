@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Order API\\OrderAPI_Phase2\\OrderAPI_Phase2.csproj": {}
+    "D:\\MICROSERVICES\\Microservices New Clone\\New folder\\Microservices\\Project\\Order API\\OrderAPI_Phase2\\OrderAPI_Phase2.csproj": {}
   },
   "projects": {
-    "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Order API\\OrderAPI_Phase2\\OrderAPI_Phase2.csproj": {
+    "D:\\MICROSERVICES\\Microservices New Clone\\New folder\\Microservices\\Project\\Order API\\OrderAPI_Phase2\\OrderAPI_Phase2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Order API\\OrderAPI_Phase2\\OrderAPI_Phase2.csproj",
+        "projectUniqueName": "D:\\MICROSERVICES\\Microservices New Clone\\New folder\\Microservices\\Project\\Order API\\OrderAPI_Phase2\\OrderAPI_Phase2.csproj",
         "projectName": "OrderAPI_Phase2",
-        "projectPath": "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Order API\\OrderAPI_Phase2\\OrderAPI_Phase2.csproj",
+        "projectPath": "D:\\MICROSERVICES\\Microservices New Clone\\New folder\\Microservices\\Project\\Order API\\OrderAPI_Phase2\\OrderAPI_Phase2.csproj",
         "packagesPath": "C:\\Users\\lavanyap\\.nuget\\packages\\",
-        "outputPath": "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Order API\\OrderAPI_Phase2\\obj\\",
+        "outputPath": "D:\\MICROSERVICES\\Microservices New Clone\\New folder\\Microservices\\Project\\Order API\\OrderAPI_Phase2\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -51,9 +51,29 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Confluent.Kafka": {
+              "target": "Package",
+              "version": "[2.13.2, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[9.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.2, )"
             },
             "Microsoft.Extensions.Http.Polly": {
               "target": "Package",

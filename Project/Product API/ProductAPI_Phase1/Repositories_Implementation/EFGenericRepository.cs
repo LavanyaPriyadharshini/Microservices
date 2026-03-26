@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProductAPI_Phase1.Repositories;
 
+
 namespace ProductAPI_Phase1.Repositories_Implementation
 {
     /// <summary>
@@ -59,15 +60,24 @@ namespace ProductAPI_Phase1.Repositories_Implementation
             return entity;
         }
 
+        //public async Task<T?> UpdateAsync(T entity)
+        //{
+        //    // Mark entity as modified
+        //    // EF Core tracks what changed
+        //    _dbSet.Update(entity);
+
+        //    // Execute UPDATE [TableName] SET ... WHERE Id = @id
+        //    await _context.SaveChangesAsync();
+
+        //    return entity;
+        //}
+
         public async Task<T?> UpdateAsync(T entity)
         {
-            // Mark entity as modified
-            // EF Core tracks what changed
-            _dbSet.Update(entity);
-
-            // Execute UPDATE [TableName] SET ... WHERE Id = @id
+            // Update already tracked entity
+            // Since we fetched it via FindAsync it's already tracked
+            // SaveChangesAsync will detect changes automatically
             await _context.SaveChangesAsync();
-
             return entity;
         }
 

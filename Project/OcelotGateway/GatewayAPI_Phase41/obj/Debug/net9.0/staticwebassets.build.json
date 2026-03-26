@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "doF/nLxoA5yGlSje5fNtkMYjV+B7JcY8x//kPJIMgVU=",
+  "Source": "GatewayAPI_Phase4",
+  "BasePath": "_content/GatewayAPI_Phase4",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

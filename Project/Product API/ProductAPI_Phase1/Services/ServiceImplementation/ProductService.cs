@@ -1,4 +1,5 @@
-﻿using ProductAPI_Phase1.DTOs;
+﻿using Microsoft.Extensions.Logging;
+using ProductAPI_Phase1.DTOs;
 using ProductAPI_Phase1.Models;
 using ProductAPI_Phase1.Repositories;
 using ProductAPI_Phase1.Services.Interfaces;
@@ -30,7 +31,10 @@ namespace ProductAPI_Phase1.Services.ServiceImplementation
         {
             logger.LogInformation("Fetching all the products");
 
-            var products = await repository.GetAllProductAsync(); //here if you have db ,you can accessusing the Generic repository and unit of work concept
+            //this is for the satic reposiory , now we have created a new genric repository with which we have connected the database
+            //var products = await repository.GetAllProductAsync(); //here if you have db ,you can accessusing the Generic repository and unit of work concept
+
+            var products = await repository.GetAllAsync();
 
             var productDTO = products.Select(MapToDto);
 
@@ -48,7 +52,11 @@ namespace ProductAPI_Phase1.Services.ServiceImplementation
         {
             logger.LogInformation("Fetching product with ID: {ProductId}", id);
 
-            var product = await repository.GetProductByIdAsync(id);
+          //  var product = await repository.GetProductByIdAsync(id);
+
+
+            var product = await repository.GetByIdAsync(id);
+
 
             if (product is null)
             {
@@ -63,7 +71,10 @@ namespace ProductAPI_Phase1.Services.ServiceImplementation
         {
             logger.LogInformation("Fetching product with ID: {ProductId}", Prodid);
 
-            var product = await repository.GetProductByIdAsync(Prodid);
+            // var product = await repository.GetProductByIdAsync(Prodid);
+
+            var product = await repository.GetByIdAsync(Prodid);
+
 
             if (product is null)
             {
@@ -83,6 +94,7 @@ namespace ProductAPI_Phase1.Services.ServiceImplementation
             var product = new Product
             {
                 Prod_Name = createProductDto.Name,
+                ProductId=createProductDto.ProductId,
                 Description = createProductDto.Description,
                 Price = createProductDto.Price,
                 CostPrice = createProductDto.CostPrice,
@@ -92,7 +104,10 @@ namespace ProductAPI_Phase1.Services.ServiceImplementation
                 SupplierId = createProductDto.SupplierId
             };
 
-            var createdProduct = await repository.CreateProductAsync(product);
+            //var createdProduct = await repository.CreateProductAsync(product);
+
+            var createdProduct = await repository.CreateAsync(product);
+
 
             logger.LogInformation("Product created with ID: {ProductId}", createdProduct.Id);
 
@@ -104,31 +119,30 @@ namespace ProductAPI_Phase1.Services.ServiceImplementation
         {
             logger.LogInformation("Updating product with ID: {ProductId}", id);
 
-            var exists = await repository.ProductExistsAsync(id);
-            if (!exists)
+            var existingProduct = await repository.GetByIdAsync(id);
+
+            if (existingProduct == null)
             {
                 logger.LogWarning("Product with ID {ProductId} not found for update", id);
                 return null;
             }
 
-            var product = new Product
-            {
-                Id = id,
-                Prod_Name = updateProductDto.Name,
-                Description = updateProductDto.Description,
-                Price = updateProductDto.Price,
-                CostPrice = updateProductDto.CostPrice,
-                Stock = updateProductDto.Stock,
-                Category = updateProductDto.Category,
-                ProdImageUrl = updateProductDto.ImageUrl,
-                SupplierId = updateProductDto.SupplierId
-            };
+            // Update existing tracked entity properties
+            existingProduct.Prod_Name = updateProductDto.Name;
+            existingProduct.Description = updateProductDto.Description;
+            existingProduct.Price = updateProductDto.Price;
+            existingProduct.CostPrice = updateProductDto.CostPrice;
+            existingProduct.Stock = updateProductDto.Stock;
+            existingProduct.Category = updateProductDto.Category;
+            existingProduct.ProdImageUrl = updateProductDto.ImageUrl;
+            existingProduct.SupplierId = updateProductDto.SupplierId;
 
-            var updatedProduct = await repository.UpdateProductAsync(product);
+            // ✅ FIXED — pass entity to UpdateAsync
+            await repository.UpdateAsync(existingProduct);
 
             logger.LogInformation("Product {ProductId} updated successfully", id);
 
-            return updatedProduct is not null ? MapToDto(updatedProduct) : null;
+            return MapToDto(existingProduct);
         }
 
 
@@ -136,7 +150,9 @@ namespace ProductAPI_Phase1.Services.ServiceImplementation
         {
             logger.LogInformation("Deleting product with ID: {ProductId}", id);
 
-            var result = await repository.DeleteProductAsync(id);
+           // var result = await repository.DeleteProductAsync(id);
+
+            var result = await repository.DeleteAsync(id);
 
             if (result)
                 logger.LogInformation("Product {ProductId} deleted successfully", id);

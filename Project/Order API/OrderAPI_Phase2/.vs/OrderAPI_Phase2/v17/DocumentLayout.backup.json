@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Order API\\OrderAPI_Phase2\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{0146702A-3DD8-427A-9102-1D7398FAC593}|OrderAPI_Phase2.csproj|d:\\microservices\\microservices\\project\\order api\\orderapi_phase2\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0146702A-3DD8-427A-9102-1D7398FAC593}|OrderAPI_Phase2.csproj|solutionrelative:controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0146702A-3DD8-427A-9102-1D7398FAC593}|OrderAPI_Phase2.csproj|d:\\microservices\\microservices\\project\\order api\\orderapi_phase2\\services\\serviceimplementation\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0146702A-3DD8-427A-9102-1D7398FAC593}|OrderAPI_Phase2.csproj|solutionrelative:services\\serviceimplementation\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0146702A-3DD8-427A-9102-1D7398FAC593}|OrderAPI_Phase2.csproj|d:\\microservices\\microservices\\project\\order api\\orderapi_phase2\\httpclients\\implementation\\producthttpclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0146702A-3DD8-427A-9102-1D7398FAC593}|OrderAPI_Phase2.csproj|solutionrelative:httpclients\\implementation\\producthttpclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0146702A-3DD8-427A-9102-1D7398FAC593}|OrderAPI_Phase2.csproj|d:\\microservices\\microservices\\project\\order api\\orderapi_phase2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0146702A-3DD8-427A-9102-1D7398FAC593}|OrderAPI_Phase2.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,18 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{0146702A-3DD8-427A-9102-1D7398FAC593}|OrderAPI_Phase2.csproj|d:\\microservices\\microservices\\project\\order api\\orderapi_phase2\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{0146702A-3DD8-427A-9102-1D7398FAC593}|OrderAPI_Phase2.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0146702A-3DD8-427A-9102-1D7398FAC593}|OrderAPI_Phase2.csproj|d:\\microservices\\microservices\\project\\order api\\orderapi_phase2\\httpclients\\implementation\\producthttpclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0146702A-3DD8-427A-9102-1D7398FAC593}|OrderAPI_Phase2.csproj|solutionrelative:httpclients\\implementation\\producthttpclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0146702A-3DD8-427A-9102-1D7398FAC593}|OrderAPI_Phase2.csproj|d:\\microservices\\microservices\\project\\order api\\orderapi_phase2\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0146702A-3DD8-427A-9102-1D7398FAC593}|OrderAPI_Phase2.csproj|solutionrelative:controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0146702A-3DD8-427A-9102-1D7398FAC593}|OrderAPI_Phase2.csproj|d:\\microservices\\microservices\\project\\order api\\orderapi_phase2\\services\\serviceimplementation\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0146702A-3DD8-427A-9102-1D7398FAC593}|OrderAPI_Phase2.csproj|solutionrelative:services\\serviceimplementation\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0146702A-3DD8-427A-9102-1D7398FAC593}|OrderAPI_Phase2.csproj|d:\\microservices\\microservices\\project\\order api\\orderapi_phase2\\models\\orderdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -62,7 +62,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "launchSettings.json",
               "DocumentMoniker": "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Order API\\OrderAPI_Phase2\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "Properties\\launchSettings.json",
@@ -75,7 +75,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Order API\\OrderAPI_Phase2\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -88,7 +88,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Order API\\OrderAPI_Phase2\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -101,13 +101,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "OrderController.cs",
               "DocumentMoniker": "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Order API\\OrderAPI_Phase2\\Controllers\\OrderController.cs",
               "RelativeDocumentMoniker": "Controllers\\OrderController.cs",
               "ToolTip": "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Order API\\OrderAPI_Phase2\\Controllers\\OrderController.cs",
               "RelativeToolTip": "Controllers\\OrderController.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAswC4AAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAswDwAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-10T11:37:35.379Z",
               "EditorCaption": ""
@@ -126,15 +126,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "OrderService.cs",
               "DocumentMoniker": "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Order API\\OrderAPI_Phase2\\Services\\ServiceImplementation\\OrderService.cs",
               "RelativeDocumentMoniker": "Services\\ServiceImplementation\\OrderService.cs",
               "ToolTip": "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Order API\\OrderAPI_Phase2\\Services\\ServiceImplementation\\OrderService.cs",
               "RelativeToolTip": "Services\\ServiceImplementation\\OrderService.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAWwDIAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAIwEMAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-10T11:20:38.34Z"
+              "WhenOpened": "2026-02-10T11:20:38.34Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -150,13 +151,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "ProductHttpClient.cs",
               "DocumentMoniker": "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Order API\\OrderAPI_Phase2\\HttpClients\\Implementation\\ProductHttpClient.cs",
               "RelativeDocumentMoniker": "HttpClients\\Implementation\\ProductHttpClient.cs",
               "ToolTip": "D:\\MICROSERVICES\\MICROSERVICES\\Project\\Order API\\OrderAPI_Phase2\\HttpClients\\Implementation\\ProductHttpClient.cs",
               "RelativeToolTip": "HttpClients\\Implementation\\ProductHttpClient.cs",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAowBwAAABCAAAAAAAAAA==",
+              "ViewState": "AgIAADMAAAAAAAAAAAAIwEkAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-10T11:10:48.723Z",
               "EditorCaption": ""

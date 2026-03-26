@@ -11,9 +11,7 @@ namespace OrderAPI_Phase2.Services.ServiceImplementation
      IProductHttpClient productHttpClient,
      ILogger<OrderService> logger) : IOrderService
     {
-
-
-     
+            
         public async Task<IEnumerable<OrderDto>> GetAllOrdersAsync()
         {
             logger.LogInformation("Fetching all orders");
